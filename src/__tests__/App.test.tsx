@@ -4,5 +4,5 @@ import App from 'App';
 
 test('renders app component', () => {
   const { getByTestId } = render(<App />);
-  expect(getByTestId('app-container')).toBeInTheDocument();
+  expect(getByTestId('app-container')).not.toBeInTheDocument();
 });
