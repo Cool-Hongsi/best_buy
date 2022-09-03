@@ -1,46 +1,212 @@
-# Getting Started with Create React App
+# ESLint
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Javascript 코드 문법 검사 및 코딩 스타일 검사
+- Project Run을 해야 알 수 있는 Warning or Error를 사전에 코드에서 발견할 수 있다.
+- ESLint Extension 설치
+- Typescript 사용시 필요 package
+- npm install -D eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser
+- npm install -D prettier eslint-plugin-prettier
+- root에 .eslintrc 파일 생성 및 내용 추가
 
-## Available Scripts
+```
+{
+  // 전역변수 환경 설정
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
 
-In the project directory, you can run:
+  // npm을 통해 설치한 외부 ESLint 설정 등록 (eslint-config-{name}으로 설치)
+  "extends": [
+    "react-app",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
 
-### `npm start`
+  // ESLint에 지원할 JavaScript 옵션 설정
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  // parser 등록
+  "parser": "@typescript-eslint/parser",
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  // 사용자 규칙 추가할 플러그인 (eslint-plugin-{name}으로 설치)
+  "plugins": [
+    "@typescript-eslint",
+    "prettier"
+  ],
 
-### `npm test`
+  // 플러그인을 통해 설치한 것 외에 규칙 설정
+  "rules": {
+    "prettier/prettier": [
+      "error", {
+        "endOfLine": "auto"
+      }
+    ],
+    "no-unused-expressions": [
+      "error",
+      {
+        "allowShortCircuit": true,
+        "allowTernary": true,
+        "allowTaggedTemplates": true
+      }
+    ],
+    "no-use-before-define": ["off"],
+    "react/jsx-one-expression-per-line": ["off"],
+    "react/jsx-props-no-spreading": ["off"],
+    "react/button-has-type": ["off"],
+    "react/require-default-props": ["off"],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "args": "none"
+      }
+    ],
+    "react/jsx-filename-extension": [
+      2,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ]
+  }
+}
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- root에 .eslintignore 파일 생성 및 내용 추가
 
-### `npm run build`
+```
+build/*
+public/*
+node_modules/*
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Prettier
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 코드 스타일 포맷팅
+- 다른 사람과 협업해서 작업할 때, 코딩 스타일을 맞춰야 한다. (안그럼, Git에서 Conflict 또는 불필요한 Commit)
+- Prettier Extension 설치
+- root에 .prettierrc 파일 생성 및 내용 추가
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+{
+  "printWidth": 120,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "bracketSpacing": true,
+  "singleQuote": true,
+  "arrowParens": "always",
+  "semi": true
+}
+```
 
-### `npm run eject`
+- Go - Go to file - settings.json에 내용 추가
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- root에 .prettierignore 파일 생성 및 내용 추가
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+build/*
+public/*
+node_modules/*
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# 상기 설정 후 Reload
 
-## Learn More
+# husky
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Code quality를 위해 git에 commit & push 하기 전, hook을 걸어 특정한 action을 하도록 만들어주는 tool
+- npm i -D husky
+- npm set-script prepare "husky install" (package.json script에 prepare 명령어 생성)
+- npm run prepare (root에 .husky 디렉토리 생성)
+- npx husky add .husky/pre-commit "npm run eslint" (.husky/pre-commit file 생성)
+- npx husky add .husky/pre-push "npm run test:ci" (.husky/pre-push file 생성)
+- package.json 수정
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+  "scripts": {
+    // ...
+    "prepare": "husky install",
+    "eslint": "eslint .",
+    "test:ci": "react-scripts test --watchAll=false"
+  },
+```
+
+- commit & push 확인
+
+# package.json staging
+
+- npm i cross-env
+- package.json 수정
+
+```
+  "scripts": {
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "dev": "cross-env REACT_APP_ENV=dev react-scripts start",
+    "qa": "cross-env REACT_APP_ENV=qa react-scripts start",
+    "prod": "cross-env REACT_APP_ENV=prod react-scripts start",
+    "build:dev": "cross-env REACT_APP_ENV=dev react-scripts build",
+    "build:qa": "cross-env REACT_APP_ENV=qa react-scripts build",
+    "build:prod": "cross-env REACT_APP_ENV=prod react-scripts build"
+  },
+```
+
+- src/environment.ts 파일 생성 및 내용 추가
+
+```
+const environment: { baseUrl: string | undefined } = {
+  baseUrl: 'http://localhost:3000',
+};
+
+if (process.env.REACT_APP_ENV === 'dev') {
+  environment.baseUrl = process.env.REACT_APP_DEV_API;
+}
+
+if (process.env.REACT_APP_ENV === 'qa') {
+  environment.baseUrl = process.env.REACT_APP_QA_API;
+}
+
+if (process.env.REACT_APP_ENV === 'prod') {
+  environment.baseUrl = process.env.REACT_APP_PROD_API;
+}
+
+export default environment;
+```
+
+- root에 .env 파일 생성 및 내용 추가
+
+```
+REACT_APP_DEV_API=DEV_API_ADDRESS
+REACT_APP_QA_API=QA_API_ADDRESS
+REACT_APP_PROD_API=PROD_API_ADDRESS
+```
+
+component children props type => JSX.Element | JSX.Element[];
+-webkit-line-clamp: 3;
+Type Partial<User> Mapping!
+testing (axios / redux / cypress?)
+react router dom
+slice...
+StyledComponent? ClassNames & Bootstrap? (StyledComponent 사용하면 media query 사용해야 하는데, 고정 값으로 사용토록 ㄱㄱ)
+input search. (reusable, reuse slice const)
+dotenv
+children (PageContainer?)
+bestbuy api
+path not .. .. => src/
+px2vw
+type enum? Action 아우르는거

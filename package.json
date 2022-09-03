@@ -10,6 +10,7 @@
     "@types/node": "^16.11.56",
     "@types/react": "^18.0.18",
     "@types/react-dom": "^18.0.6",
+    "cross-env": "^7.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -17,10 +18,17 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "cross-env REACT_APP_ENV=dev react-scripts start",
+    "qa": "cross-env REACT_APP_ENV=qa react-scripts start",
+    "prod": "cross-env REACT_APP_ENV=prod react-scripts start",
+    "build:dev": "cross-env REACT_APP_ENV=dev react-scripts build",
+    "build:qa": "cross-env REACT_APP_ENV=qa react-scripts build",
+    "build:prod": "cross-env REACT_APP_ENV=prod react-scripts build",
+    "prepare": "husky install",
+    "eslint": "eslint .",
+    "test:ci": "react-scripts test --watchAll=false"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +47,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
+    "eslint": "^8.23.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.1",
+    "prettier": "^2.7.1"
   }
 }
