@@ -146,7 +146,7 @@ node_modules/*
   },
 ```
 
-- commit & push 확인
+- commit (Check ESLint) & push (Check Test) 확인
 
 # package.json staging
 
