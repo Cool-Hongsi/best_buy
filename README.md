@@ -125,7 +125,7 @@ public/*
 node_modules/*
 ```
 
-# 상기 설정 후 Reload
+- 상기 (ESLint & Prettier) 설정 후 Reload VSCode
 
 # husky
 
@@ -196,6 +196,7 @@ REACT_APP_QA_API=QA_API_ADDRESS
 REACT_APP_PROD_API=PROD_API_ADDRESS
 ```
 
+프로젝트 structure부터 참고
 component children props type => JSX.Element | JSX.Element[];
 -webkit-line-clamp: 3;
 Type Partial<User> Mapping!
@@ -207,6 +208,6 @@ input search. (reusable, reuse slice const)
 dotenv
 children (PageContainer?)
 bestbuy api
-path not .. .. => src/
+(O) path not .. .. => src/
 px2vw
 type enum? Action 아우르는거
