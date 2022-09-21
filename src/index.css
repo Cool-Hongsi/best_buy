@@ -1,5 +1,48 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@font-face {
+  font-family: 'Lato-Light';
+  src: url(asset/font/Lato-Light.ttf) format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lato-Regular';
+  src: url(asset/font/Lato-Regular.ttf) format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lato-Bold';
+  src: url(asset/font/Lato-Bold.ttf) format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LexendDeca-Thin';
+  src: url(asset/font/LexendDeca-Thin.ttf) format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LexendDeca-Light';
+  src: url(asset/font/LexendDeca-Light.ttf) format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LexendDeca-Regular';
+  src: url(asset/font/LexendDeca-Regular.ttf) format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LexendDeca-ExtraBold';
+  src: url(asset/font/LexendDeca-ExtraBold.ttf) format('truetype');
+  font-weight: 800;
+  font-style: normal;
 }
