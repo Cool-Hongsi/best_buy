@@ -31,7 +31,7 @@ jest.mock('react-router-dom', () => ({
 const renderComponent = (store: Store) =>
   render(
     <Router>
-      {/* useSelector or useDispatch 사용한 곳만 <Provider store={store}> */}
+      {/* Provider는 해당 Component 또는 자식 Component에서 useSelector / useDispatch를 사용했으면 Wrap 해줘야 한다. */}
       <Provider store={store}>
         <Login />
       </Provider>

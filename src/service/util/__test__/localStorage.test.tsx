@@ -4,8 +4,13 @@ import {
   getLocalStorage,
   removeLocalStorage,
   setCartDataToAuthLocalStorage,
+  deleteCartDataFromAuthLocalStorage,
+  deleteAllCartDataFromAuthLocalStorage,
 } from 'service/util/localStorage';
 import { mockProductData } from 'service/mock/data/bestbuy';
+import { LOCALSTORAGE } from 'service/const/general';
+
+const { AUTH } = LOCALSTORAGE;
 
 const localStorageMock = (() => {
   let storage: any = {};
@@ -33,7 +38,7 @@ Object.defineProperty(window, 'localStorage', {
 });
 
 describe('src/service/util/localStorage', () => {
-  const key = 'auth';
+  const key = AUTH;
   const value = {
     username: 'testUsername',
     accessToken: 'testAccessToken',
@@ -79,6 +84,38 @@ describe('src/service/util/localStorage', () => {
     setCartDataToAuthLocalStorage(true, mockProductData[1]);
     mockProductData[1].count += 1;
     expect(localStorage.getItem(key)).toContain(JSON.stringify(mockProductData[1]));
+
+    removeLocalStorage(key);
+  });
+  it('test deleteCartDataFromAuthLocalStorage', () => {
+    setLocalStorage(key, value);
+
+    setCartDataToAuthLocalStorage(true, mockProductData[0]);
+    setCartDataToAuthLocalStorage(true, mockProductData[1]);
+
+    expect(localStorage.getItem(key)).toContain(JSON.stringify(mockProductData[0]));
+    expect(localStorage.getItem(key)).toContain(JSON.stringify(mockProductData[1]));
+
+    deleteCartDataFromAuthLocalStorage(true, mockProductData[1]);
+
+    expect(localStorage.getItem(key)).toContain(JSON.stringify(mockProductData[0]));
+    expect(localStorage.getItem(key)).not.toContain(JSON.stringify(mockProductData[1]));
+
+    removeLocalStorage(key);
+  });
+  it('test deleteAllCartDataFromAuthLocalStorage', () => {
+    setLocalStorage(key, value);
+
+    setCartDataToAuthLocalStorage(true, mockProductData[0]);
+    setCartDataToAuthLocalStorage(true, mockProductData[1]);
+
+    expect(localStorage.getItem(key)).toContain(JSON.stringify(mockProductData[0]));
+    expect(localStorage.getItem(key)).toContain(JSON.stringify(mockProductData[1]));
+
+    deleteAllCartDataFromAuthLocalStorage(true);
+
+    expect(localStorage.getItem(key)).not.toContain(JSON.stringify(mockProductData[0]));
+    expect(localStorage.getItem(key)).not.toContain(JSON.stringify(mockProductData[1]));
 
     removeLocalStorage(key);
   });

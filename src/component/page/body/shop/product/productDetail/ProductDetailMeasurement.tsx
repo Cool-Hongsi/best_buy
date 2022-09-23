@@ -25,7 +25,7 @@ const ProductDetailMeasurement = ({ product }: ProductDetailPropsType) => {
   };
 
   return (
-    <Styled.ProductDetailMeasurement>
+    <Styled.ProductDetailMeasurement data-testid="productDetailMeasurement-component">
       <div className="product-detail-measurement-selector">
         {Object.values(MEASUREMENT).map((measurement: string) => {
           return (
@@ -43,7 +43,12 @@ const ProductDetailMeasurement = ({ product }: ProductDetailPropsType) => {
           );
         })}
       </div>
-      <div className="product-detail-measurement-data">{measurementData[currentMeasurement]}</div>
+      <div
+        data-testid="product-detail-measurement-data"
+        className="product-detail-measurement-data"
+      >
+        {measurementData[currentMeasurement]}
+      </div>
     </Styled.ProductDetailMeasurement>
   );
 };

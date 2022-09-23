@@ -13,6 +13,8 @@ const {
   SET_DEFAULT_CART_SUCCESS,
   SET_DEFAULT_CART_FAILURE,
   ADD_CART,
+  DELETE_EACH_CART,
+  DELETE_ALL_CART,
 } = BESTBUY_ACTION;
 
 const INITIAL_STATE: BestbuyState = {
@@ -54,12 +56,25 @@ const bestbuyReducer: Reducer<BestbuyState, BestbuyActionTypes> = (
         draft.cart = [];
         break;
       case ADD_CART:
-        const index = draft.cart.findIndex((cart: ProductModel) => cart.sku === action.payload.sku);
-        if (index > -1) {
-          draft.cart[index].count += action.payload.count;
+        const addCartIndex = draft.cart.findIndex(
+          (cart: ProductModel) => cart.sku === action.payload.sku,
+        );
+        if (addCartIndex > -1) {
+          draft.cart[addCartIndex].count += action.payload.count;
         } else {
           draft.cart.push(action.payload);
         }
+        break;
+      case DELETE_EACH_CART:
+        const deleteEachCartIndex = draft.cart.findIndex(
+          (cart: ProductModel) => cart.sku === action.payload.sku,
+        );
+        if (deleteEachCartIndex > -1) {
+          draft.cart.splice(deleteEachCartIndex, 1);
+        }
+        break;
+      case DELETE_ALL_CART:
+        draft.cart = [];
         break;
       default:
         return state;

@@ -8,6 +8,8 @@ import {
   SetDefaultCartSuccess,
   SetDefaultCartFailure,
   AddCart,
+  DeleteEachCart,
+  DeleteAllCart,
 } from 'component/redux/bestbuy/bestbuyAction.interface';
 import { ProductModel } from 'service/type/model/bestbuy';
 
@@ -19,6 +21,8 @@ const {
   SET_DEFAULT_CART_SUCCESS,
   SET_DEFAULT_CART_FAILURE,
   ADD_CART,
+  DELETE_EACH_CART,
+  DELETE_ALL_CART,
 } = BESTBUY_ACTION;
 
 export const searchRequest = (searchData: SearchRequestPayload): SearchRequest => ({
@@ -53,4 +57,13 @@ export const setDefaultCartFailure = (error: Error): SetDefaultCartFailure => ({
 export const addCart = (product: ProductModel): AddCart => ({
   type: ADD_CART,
   payload: product,
+});
+
+export const deleteEachCart = (product: ProductModel): DeleteEachCart => ({
+  type: DELETE_EACH_CART,
+  payload: product,
+});
+
+export const deleteAllCart = (): DeleteAllCart => ({
+  type: DELETE_ALL_CART,
 });

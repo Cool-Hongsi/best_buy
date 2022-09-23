@@ -37,7 +37,7 @@ describe('src/component/page/body/shop', () => {
   });
 
   it('renders ShopContainer component', async () => {
-    const { getByTestId } = await renderComponent(store); // Route Lazy Loading 때문에 await render인듯
+    const { getByTestId } = await renderComponent(store); // await render for Suspense Loading in Lazy Load
     expect(getByTestId('shopContainer-component')).toBeInTheDocument();
   });
 });

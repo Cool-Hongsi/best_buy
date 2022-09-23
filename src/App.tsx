@@ -9,13 +9,15 @@ import { getLocalStorage } from 'service/util/localStorage';
 import { useAppDispatch } from 'service/hook/useAppDispatch';
 import { loginSuccess } from 'component/redux/auth/authAction';
 import { setDefaultCartRequest } from 'component/redux/bestbuy/bestbuyAction';
+import { LOCALSTORAGE } from 'service/const/general';
 import * as Styled from 'Styled.App';
 
 const { HOME, SHOP, CART, LOGIN } = ROUTE;
+const { AUTH } = LOCALSTORAGE;
 
 const Home = React.lazy(() => import('component/page/body/home/Home'));
 const Shop = React.lazy(() => import('component/page/body/shop'));
-const Cart = React.lazy(() => import('component/page/body/cart/Cart'));
+const Cart = React.lazy(() => import('component/page/body/cart'));
 const Login = React.lazy(() => import('component/page/body/login/Login'));
 // ProductDetailContainer does NOT belong to ROUTE!
 const ProductDetailContainer = React.lazy(
@@ -27,7 +29,7 @@ const App = () => {
 
   // Check login status and set default cart data (Execute once in initial loading)
   useEffect(() => {
-    if (getLocalStorage('auth')) {
+    if (getLocalStorage(AUTH)) {
       dispatch(loginSuccess());
     }
     dispatch(setDefaultCartRequest());

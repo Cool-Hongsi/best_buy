@@ -35,7 +35,7 @@ const ProductDetailMain = ({ id, product }: ProductDetailPropsType) => {
   };
 
   return (
-    <Styled.ProductDetailMain>
+    <Styled.ProductDetailMain data-testid="productDetailMain-component">
       <LazyLoadImage
         data-testid="product-detail-main-image"
         alt={product.name}
@@ -62,10 +62,20 @@ const ProductDetailMain = ({ id, product }: ProductDetailPropsType) => {
           <span data-testid="product-detail-main-salePrice">{salePrice}</span>
         </div>
         <div className="product-detail-main-quantity">
-          <span>{product.quantityLimit}ea left</span>
-          <span> (Updated at {dateFormat(product.itemUpdateDate)})</span>
+          <span data-testid="product-detail-main-quantityLimit">
+            {product.quantityLimit}ea left
+          </span>
+          <span data-testid="product-detail-main-itemUpdateDate">
+            {' '}
+            (Updated at {dateFormat(product.itemUpdateDate)})
+          </span>
         </div>
-        <div className="product-detail-main-description">{product.longDescription}</div>
+        <div
+          data-testid="product-detail-main-description"
+          className="product-detail-main-description"
+        >
+          {product.longDescription}
+        </div>
         <div className="product-detail-main-count-container">
           <Button
             dataTestId="productDetailMainDecreaseButtonTestId"
@@ -75,7 +85,7 @@ const ProductDetailMain = ({ id, product }: ProductDetailPropsType) => {
             backgroundColor={colorStyle.dark}
             onClickFunc={() => count > 1 && setCount(count - 1)}
           />
-          <div>{count}</div>
+          <div data-testid="product-detail-main-count">{count}</div>
           <Button
             dataTestId="productDetailMainIncreaseButtonTestId"
             text="+"

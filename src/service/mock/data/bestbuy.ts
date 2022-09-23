@@ -11,7 +11,7 @@ export const mockProductData: ProductModel[] = [
     manufacturer: 'Test Manufacturer 1',
     modelNumber: 'ABC123',
     name: 'Test Name 1',
-    quantityLimit: 5,
+    quantityLimit: 2,
     regularPrice: 10.5,
     salePrice: 8.5,
     sku: 123,

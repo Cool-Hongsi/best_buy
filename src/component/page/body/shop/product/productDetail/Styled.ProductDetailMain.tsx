@@ -50,6 +50,12 @@ export const ProductDetailMain = styled.section`
       align-items: center;
       width: 180px;
       justify-content: space-between;
+
+      ${getResponsiveMediaQuery('sm')} {
+        button {
+          width: 50px;
+        }
+      }
     }
     .product-detail-main-buy-cart-button-container {
       > button:nth-child(1) {

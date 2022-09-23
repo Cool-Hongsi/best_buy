@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { takeLatest, put, call } from 'redux-saga/effects';
 import { AUTH_ACTION } from 'service/const/action';
+import { LOCALSTORAGE } from 'service/const/general';
 import { LoginRequest } from 'component/redux/auth/authAction.interface';
 import { loginApiResult } from 'service/api/auth';
 import { loginSuccess, loginFailure } from 'component/redux/auth/authAction';
@@ -9,6 +10,7 @@ import { ROUTE } from 'service/const/route';
 import { setLocalStorage } from 'service/util/localStorage';
 
 const { LOGIN_REQUEST } = AUTH_ACTION;
+const { AUTH } = LOCALSTORAGE;
 const { HOME } = ROUTE;
 
 export function* loginRequestFunc(action: LoginRequest): any {
@@ -17,7 +19,7 @@ export function* loginRequestFunc(action: LoginRequest): any {
 
     // eslint-disable-next-line no-prototype-builtins
     if (result.hasOwnProperty('accessToken')) {
-      yield setLocalStorage('auth', result as LoginModel);
+      yield setLocalStorage(AUTH, result as LoginModel);
       yield put(loginSuccess());
       yield action.payload.navigate(HOME);
     } else {

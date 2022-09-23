@@ -196,21 +196,20 @@ REACT_APP_QA_API=QA_API_ADDRESS
 REACT_APP_PROD_API=PROD_API_ADDRESS
 ```
 
-프로젝트 structure 참고 (interface, component, Styled.component.tsx, **test**)
+(O) 프로젝트 structure 참고 (interface, component, Styled.component.tsx, **test**)
 (O) component children props type => JSX.Element | JSX.Element[];
 (O) -webkit-line-clamp: 3; (product name field)
-Type Partial<User> Mapping!
-testing (axios / redux / cypress?)
+(O) Type Partial<User> Mapping!
 (O) react router dom (lazy)
-slice...
 (O) StyledComponent? ClassNames & Bootstrap? (StyledComponent 사용하면 media query 사용해야 하는데, 고정 값으로 사용토록 ㄱㄱ)
-input search. (reusable, reuse slice const)
+(O) input search. (reusable)
 (O) dotenv
-bestbuy api
+(O) bestbuy api
 (O) path not .. .. => src/
-type enum? Action 아우르는거
-axios 기본 response type / parsed type
-redux를 slice랑 기본꺼랑 따로 만들어볼까? (jph는 redux&saga / bestbuy는 slice ??) => 그냥 bestbuy한개로 slice랑 redux기본 만들어보자
-login fake로 넣자
-action reducer saga (testing) 해 말어?
+(O) type enum? Action 아우르는거
+(O) axios 기본 response type / parsed type
+(O) login fake로 넣자
 (O) authReducer => 기본 / bestbuyReducer => immer
+testing (axios / redux / cypress)
+slice...
+action reducer saga (testing) 해 말어?

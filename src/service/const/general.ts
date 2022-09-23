@@ -1,3 +1,15 @@
+type LocalStorageType = {
+  AUTH: string;
+  ANONYMOUS: string;
+  EXISTINGAUTHCART: string;
+};
+
+export const LOCALSTORAGE: LocalStorageType = {
+  AUTH: 'auth',
+  ANONYMOUS: 'anonymous',
+  EXISTINGAUTHCART: 'existingAuthCart',
+};
+
 type LoginType = {
   EMAIL: string;
   PASSWORD: string;
@@ -26,4 +38,14 @@ export const MEASUREMENT: MeasurementType = {
   SIZE: 'Size',
   COLOR: 'Color',
   WEIGHT: 'Weight',
+};
+
+type CartType = {
+  DELETE_ALL: string;
+  DELETE_EACH: string;
+};
+
+export const CART: CartType = {
+  DELETE_ALL: 'DELETE_ALL',
+  DELETE_EACH: 'DELETE_EACH',
 };

@@ -11,8 +11,10 @@ import {
   setDefaultCartFailure,
 } from 'component/redux/bestbuy/bestbuyAction';
 import { getExistingAuthCart, getLocalStorage } from 'service/util/localStorage';
+import { LOCALSTORAGE } from 'service/const/general';
 
 const { SEARCH_REQUEST, SET_DEFAULT_CART_REQUEST } = BESTBUY_ACTION;
+const { AUTH, ANONYMOUS } = LOCALSTORAGE;
 
 export function* searchRequestFunc(action: SearchRequest): any {
   try {
@@ -33,10 +35,10 @@ export function* setDefaultCartRequestFunc(): any {
   try {
     let defaultCartData: ProductModel[];
 
-    if (getLocalStorage('auth')) {
+    if (getLocalStorage(AUTH)) {
       defaultCartData = yield getExistingAuthCart();
-    } else if (getLocalStorage('anonymous')) {
-      defaultCartData = yield getLocalStorage('anonymous').cart;
+    } else if (getLocalStorage(ANONYMOUS)) {
+      defaultCartData = yield getLocalStorage(ANONYMOUS).cart;
     } else {
       defaultCartData = yield [];
     }

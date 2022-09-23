@@ -3,6 +3,7 @@ import { FontStyle, ColorStyle, ResponsiveSize } from 'GloblaStyle.interface';
 
 export const fontStyle: FontStyle = {
   size: {
+    ms: '10px',
     xs: '13px',
     sm: '16px',
     md: '20px',
@@ -47,13 +48,13 @@ export const getHeaderHeight = (): string => {
 /**
  * Header, Body, Footer have to contain general padding horizontally (Can be used in public)
  * @param deviceType string (WEB / MOBILE) (default WEB)
- * @returns WEB (padding: 0 50px) / MOBILE (padding: 0 25px)
+ * @returns WEB (padding: 0 50px) / MOBILE (padding: 0 15px)
  */
 export const getGeneralHorizontalPadding = (deviceType = 'WEB'): string => {
   if (deviceType === 'WEB') {
     return 'padding: 0 50px';
   } else {
-    return 'padding: 0 25px';
+    return 'padding: 0 15px';
   }
 };
 

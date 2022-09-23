@@ -1,5 +1,6 @@
 interface FontStyle {
   size: {
+    ms: string;
     xs: string;
     sm: string;
     md: string;

@@ -10,6 +10,8 @@ const {
   SET_DEFAULT_CART_SUCCESS,
   SET_DEFAULT_CART_FAILURE,
   ADD_CART,
+  DELETE_EACH_CART,
+  DELETE_ALL_CART,
 } = BESTBUY_ACTION;
 
 export type SearchRequestPayload = {
@@ -45,6 +47,14 @@ export interface AddCart {
   type: typeof ADD_CART;
   payload: ProductModel;
 }
+export interface DeleteEachCart {
+  type: typeof DELETE_EACH_CART;
+  payload: ProductModel;
+}
+export interface DeleteAllCart {
+  type: typeof DELETE_ALL_CART;
+  payload?: null;
+}
 
 export type BestbuyActionTypes =
   | AnyAction
@@ -54,4 +64,6 @@ export type BestbuyActionTypes =
   | SetDefaultCartRequest
   | SetDefaultCartSuccess
   | SetDefaultCartFailure
-  | AddCart;
+  | AddCart
+  | DeleteEachCart
+  | DeleteAllCart;

@@ -63,11 +63,28 @@ const Header = () => {
     dispatch(logout(navigate));
   };
 
+  const showCountOfCartFunc = (route: string): JSX.Element => {
+    return (
+      <div className="countOfCart-container">
+        <div className="countOfCart" data-testid="countOfCart">
+          {cart.length}
+        </div>
+        <div>{route}</div>
+      </div>
+    );
+  };
+
   return (
     <Styled.Header className="header" openMobileNav={openMobileNav} data-testid="header-component">
       <img src={Logo} alt="Logo" className="logo" data-testid="logo" />
 
-      <nav className="navigation" data-testid="navigation">
+      <nav
+        className="navigation"
+        data-testid="navigation"
+        ref={mobileNavRef}
+        tabIndex={0}
+        onBlur={() => setOpenMobileNav(false)}
+      >
         {/* Mobile */}
         <div className="mobile" onClick={onClickMobileNav}>
           <div />
@@ -75,16 +92,11 @@ const Header = () => {
           <div />
         </div>
         {/* Web */}
-        <div
-          className="web"
-          ref={mobileNavRef}
-          tabIndex={0}
-          onBlur={() => {
-            setOpenMobileNav(false);
-          }}
-        >
+        <div className="web">
           {Object.entries(ROUTE).map((route: string[]): JSX.Element => {
             const isLogOut = route[0] === 'LOGIN' && isLoggedIn ? true : false;
+            const showCountOfCart = route[0] === 'CART' && cart.length > 0 ? true : false;
+
             return (
               <Link
                 key={route[0]}
@@ -92,13 +104,13 @@ const Header = () => {
                 onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                   setOpenMobileNav(false);
                   if (isLogOut) {
-                    e.preventDefault(); // Prevent moving '/login'
+                    e.preventDefault(); // Prevent moving '/login' when isLogOut is true
                     onClickLogout();
                   }
                 }}
                 data-testid="navigation-each"
               >
-                {isLogOut ? 'LOGOUT' : route[0]}
+                {isLogOut ? 'LOGOUT' : showCountOfCart ? showCountOfCartFunc(route[0]) : route[0]}
               </Link>
             );
           })}

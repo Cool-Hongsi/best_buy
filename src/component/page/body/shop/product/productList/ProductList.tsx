@@ -11,8 +11,6 @@ const { SHOP } = ROUTE;
 const ProductList = () => {
   const { loading, products } = useAppSelector((state) => state.bestbuyReducer);
 
-  // console.log(products);
-
   // Initial
   if (!products) {
     return <div data-testid="productList-component-null" />;

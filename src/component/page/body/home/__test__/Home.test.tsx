@@ -6,7 +6,10 @@ import { Provider } from 'react-redux';
 import { createMockStore } from 'service/mock/store/createMockStore';
 import { Store } from '@reduxjs/toolkit';
 import { removeLocalStorage, setLocalStorage } from 'service/util/localStorage';
+import { LOCALSTORAGE } from 'service/const/general';
 import Home from 'component/page/body/home/Home';
+
+const { AUTH } = LOCALSTORAGE;
 
 const localStorageMock = (() => {
   let storage: any = {};
@@ -36,7 +39,7 @@ Object.defineProperty(window, 'localStorage', {
 const renderComponent = (store: Store) =>
   render(
     <Router>
-      {/* useSelector or useDispatch 사용한 곳만 <Provider store={store}> */}
+      {/* Provider는 해당 Component 또는 자식 Component에서 useSelector / useDispatch를 사용했으면 Wrap 해줘야 한다. */}
       <Provider store={store}>
         <Home />
       </Provider>
@@ -67,7 +70,7 @@ describe('src/component/page/body/home/Home', () => {
     expect(getByTestId('home-text')).toHaveTextContent('Home');
   });
   it('test if logged in', () => {
-    const key = 'auth';
+    const key = AUTH;
     const value = {
       username: 'testUser',
     };

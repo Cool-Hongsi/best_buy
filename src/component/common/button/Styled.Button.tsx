@@ -8,6 +8,7 @@ export const Button = styled.button<Partial<ButtonPropsType>>`
   color: ${(props) => props.color};
   background-color: ${(props) => props.backgroundColor};
   border: none;
+  border-radius: 5px;
   cursor: pointer;
   transition: 0.3s;
 

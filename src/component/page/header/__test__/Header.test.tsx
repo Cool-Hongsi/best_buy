@@ -7,6 +7,7 @@ import { createMockStore } from 'service/mock/store/createMockStore';
 import { Store } from '@reduxjs/toolkit';
 import { logout } from 'component/redux/auth/authAction';
 import { setDefaultCartRequest } from 'component/redux/bestbuy/bestbuyAction';
+import { mockProductData } from 'service/mock/data/bestbuy';
 import Header from 'component/page/header/Header';
 
 jest.mock('component/redux/auth/authAction', () => ({
@@ -26,7 +27,7 @@ jest.mock('react-router-dom', () => ({
 const renderComponent = (store: Store) =>
   render(
     <Router>
-      {/* useSelector or useDispatch 사용한 곳만 <Provider store={store}> */}
+      {/* Provider는 해당 Component 또는 자식 Component에서 useSelector / useDispatch를 사용했으면 Wrap 해줘야 한다. */}
       <Provider store={store}>
         <Header />
       </Provider>
@@ -139,6 +140,40 @@ describe('src/component/page/header/Header', () => {
     it('test call dispatch (setDefaultCartRequest)', () => {
       renderComponent(store);
       expect(setDefaultCartRequest).toHaveBeenCalled();
+    });
+  });
+
+  describe('Count of Cart', () => {
+    it('test count of cart (cart length = 0)', () => {
+      store = createMockStore({
+        authReducer: {
+          isLoggedIn: false,
+        },
+        bestbuyReducer: {
+          searchTerm: '',
+          products: [],
+          cart: [],
+        },
+      });
+      store.dispatch = jest.fn();
+      const { queryByTestId } = renderComponent(store);
+      expect(queryByTestId('countOfCart')).not.toBeInTheDocument();
+    });
+    it('test count of cart (cart length = mockProductData length)', () => {
+      store = createMockStore({
+        authReducer: {
+          isLoggedIn: false,
+        },
+        bestbuyReducer: {
+          searchTerm: '',
+          products: [],
+          cart: mockProductData,
+        },
+      });
+      store.dispatch = jest.fn();
+      const { queryByTestId } = renderComponent(store);
+      expect(queryByTestId('countOfCart')).toBeInTheDocument();
+      expect(queryByTestId('countOfCart')).toHaveTextContent(mockProductData.length.toString());
     });
   });
 });

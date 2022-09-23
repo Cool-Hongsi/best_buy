@@ -8,7 +8,10 @@ import { Provider } from 'react-redux';
 import { loginSuccess } from 'component/redux/auth/authAction';
 import { setDefaultCartRequest } from 'component/redux/bestbuy/bestbuyAction';
 import { setLocalStorage, removeLocalStorage } from 'service/util/localStorage';
+import { LOCALSTORAGE } from 'service/const/general';
 import App from 'App';
+
+const { AUTH } = LOCALSTORAGE;
 
 jest.mock('component/redux/auth/authAction', () => ({
   loginSuccess: jest.fn(),
@@ -47,7 +50,7 @@ const renderComponent = async (store: Store): Promise<RenderResult> => {
   await act(async () => {
     renderResult = render(
       <Router>
-        {/* useSelector or useDispatch 사용한 곳만 <Provider store={store}> */}
+        {/* Provider는 해당 Component 또는 자식 Component에서 useSelector / useDispatch를 사용했으면 Wrap 해줘야 한다. */}
         <Provider store={store}>
           <App />
         </Provider>
@@ -76,7 +79,7 @@ describe('src/App', () => {
   });
 
   it('renders App component', async () => {
-    const { getByTestId } = await renderComponent(store); // Route Lazy Loading 때문에 await render인듯
+    const { getByTestId } = await renderComponent(store); // await render for Suspense Loading in Lazy Load
     expect(getByTestId('app-component')).toBeInTheDocument();
   });
   it('contains Header / BodyContainer / Footer components', async () => {
@@ -94,7 +97,7 @@ describe('src/App', () => {
     removeLocalStorage(key);
   });
   it('test call dispatch (loginSuccess) / call dispatch (setDefaultCartRequest)', async () => {
-    const key = 'auth';
+    const key = AUTH;
     setLocalStorage(key, {});
     await renderComponent(store);
     expect(loginSuccess).toHaveBeenCalled();

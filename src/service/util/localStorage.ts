@@ -1,7 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { ProductModel } from 'service/type/model/bestbuy';
 import { LoginModel } from 'service/type/model/auth';
+import { LOCALSTORAGE } from 'service/const/general';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
+const { AUTH, ANONYMOUS, EXISTINGAUTHCART } = LOCALSTORAGE;
+
 export const getLocalStorage = (key: string): any => {
   const data: string | null = localStorage.getItem(key);
   return data ? JSON.parse(data as string) : null;
@@ -17,13 +21,13 @@ export const removeLocalStorage = (key: string) => {
 };
 
 /**
- ** Called when logout and add cart
+ ** Called when logout and add cart and delete cart
  ** Cart 정보까지 삭제되면 안되기 때문에, 별도로 저장필요
  ** 실제로는 API로 Cart Data 관리?
  */
 export const setExistingAuthCart = () => {
-  const currentAuthLocalStorage: Partial<LoginModel> = getLocalStorage('auth');
-  const existingAuthCart: Partial<LoginModel>[] = getLocalStorage('existingAuthCart');
+  const currentAuthLocalStorage: Partial<LoginModel> = getLocalStorage(AUTH);
+  const existingAuthCart: Partial<LoginModel>[] = getLocalStorage(EXISTINGAUTHCART);
   if (existingAuthCart) {
     const index: number = existingAuthCart.findIndex(
       (existing: Partial<LoginModel>) => existing.username === currentAuthLocalStorage.username,
@@ -39,9 +43,9 @@ export const setExistingAuthCart = () => {
         cart: currentAuthLocalStorage.cart,
       });
     }
-    setLocalStorage('existingAuthCart', existingAuthCart);
+    setLocalStorage(EXISTINGAUTHCART, existingAuthCart);
   } else {
-    setLocalStorage('existingAuthCart', [
+    setLocalStorage(EXISTINGAUTHCART, [
       {
         username: currentAuthLocalStorage.username,
         cart: currentAuthLocalStorage.cart,
@@ -55,8 +59,8 @@ export const setExistingAuthCart = () => {
  ** 별도로 저장된 existingAuthCart 정보를 Login한 auth local storage cart에 넣고 return
  */
 export const getExistingAuthCart = () => {
-  const currentAuthLocalStorage: Partial<LoginModel> = getLocalStorage('auth');
-  const existingAuthCart: Partial<LoginModel>[] = getLocalStorage('existingAuthCart');
+  const currentAuthLocalStorage: Partial<LoginModel> = getLocalStorage(AUTH);
+  const existingAuthCart: Partial<LoginModel>[] = getLocalStorage(EXISTINGAUTHCART);
 
   if (existingAuthCart) {
     const index: number = existingAuthCart.findIndex(
@@ -64,7 +68,7 @@ export const getExistingAuthCart = () => {
     );
     if (index > -1) {
       currentAuthLocalStorage.cart = existingAuthCart[index].cart;
-      setLocalStorage('auth', currentAuthLocalStorage);
+      setLocalStorage(AUTH, currentAuthLocalStorage);
       return existingAuthCart[index].cart;
     }
   }
@@ -73,18 +77,18 @@ export const getExistingAuthCart = () => {
 
 const getCurrentAuthLocalStorage = (isLoggedIn: boolean): LoginModel => {
   if (isLoggedIn) {
-    return getLocalStorage('auth');
+    return getLocalStorage(AUTH);
   } else {
-    if (!getLocalStorage('anonymous')) {
+    if (!getLocalStorage(ANONYMOUS)) {
       // Only executed once
-      setLocalStorage('anonymous', {
-        username: 'anonymous',
+      setLocalStorage(ANONYMOUS, {
+        username: ANONYMOUS,
         accessToken: '',
         refreshToken: '',
         cart: [],
       });
     }
-    return getLocalStorage('anonymous');
+    return getLocalStorage(ANONYMOUS);
   }
 };
 
@@ -98,8 +102,22 @@ export const setCartDataToAuthLocalStorage = (isLoggedIn: boolean, product: Prod
   } else {
     currentAuthLocalStorage.cart.push(product);
   }
-  setLocalStorage(isLoggedIn ? 'auth' : 'anonymous', currentAuthLocalStorage);
+  setLocalStorage(isLoggedIn ? AUTH : ANONYMOUS, currentAuthLocalStorage);
 };
 
-// modifyCartDataFromAuthLocalStorage (?)
-// removeCartDataFromAuthLocalStorage
+export const deleteCartDataFromAuthLocalStorage = (isLoggedIn: boolean, product: ProductModel) => {
+  const currentAuthLocalStorage: LoginModel = getCurrentAuthLocalStorage(isLoggedIn);
+  const deleteCartIndex = currentAuthLocalStorage.cart.findIndex(
+    (cartProduct: ProductModel) => cartProduct.sku === product.sku,
+  );
+  if (deleteCartIndex > -1) {
+    currentAuthLocalStorage.cart.splice(deleteCartIndex, 1);
+  }
+  setLocalStorage(isLoggedIn ? AUTH : ANONYMOUS, currentAuthLocalStorage);
+};
+
+export const deleteAllCartDataFromAuthLocalStorage = (isLoggedIn: boolean) => {
+  const currentAuthLocalStorage: LoginModel = getCurrentAuthLocalStorage(isLoggedIn);
+  currentAuthLocalStorage.cart = [];
+  setLocalStorage(isLoggedIn ? AUTH : ANONYMOUS, currentAuthLocalStorage);
+};

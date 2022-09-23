@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import {
   colorStyle,
+  fontStyle,
   getGeneralHorizontalPadding,
   getHeaderHeight,
   getResponsiveMediaQuery,
@@ -38,6 +39,25 @@ export const Header = styled.header<HeaderStylePropsType>`
         margin-left: 40px;
         cursor: pointer;
       }
+
+      .countOfCart-container {
+        position: relative;
+
+        .countOfCart {
+          position: absolute;
+          top: -7px;
+          right: -10px;
+          background-color: ${colorStyle.red};
+          border-radius: 50%;
+          width: 18px;
+          height: 18px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: ${colorStyle.white};
+          font-size: ${fontStyle.size.ms};
+        }
+      }
     }
 
     ${getResponsiveMediaQuery('sm')} {
@@ -56,7 +76,7 @@ export const Header = styled.header<HeaderStylePropsType>`
           height: 2.5px;
           background-color: ${(props) =>
             props.openMobileNav ? colorStyle.darkGrey : colorStyle.dark};
-          border-radious: 10px;
+          // border-radius: 10px;
           transform-origin: 1px;
           transition: all 0.3s linear;
           z-index: 20;
@@ -82,12 +102,12 @@ export const Header = styled.header<HeaderStylePropsType>`
         right: 0;
         flex-direction: column;
         background-color: ${colorStyle.lightGrey};
-        width: 280px;
+        width: 220px;
         height: 100vh;
         outline: none;
         & a {
           margin: 100px 0 0 40px;
-          width: 0;
+          width: 50px;
         }
       }
     }
