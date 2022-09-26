@@ -58,7 +58,7 @@ export const setExistingAuthCart = () => {
  ** Called setDefaultCartRequestFunc in bestbuySaga
  ** 별도로 저장된 existingAuthCart 정보를 Login한 auth local storage cart에 넣고 return
  */
-export const getExistingAuthCart = () => {
+export const getExistingAuthCart = (): ProductModel[] => {
   const currentAuthLocalStorage: Partial<LoginModel> = getLocalStorage(AUTH);
   const existingAuthCart: Partial<LoginModel>[] = getLocalStorage(EXISTINGAUTHCART);
 
@@ -69,7 +69,7 @@ export const getExistingAuthCart = () => {
     if (index > -1) {
       currentAuthLocalStorage.cart = existingAuthCart[index].cart;
       setLocalStorage(AUTH, currentAuthLocalStorage);
-      return existingAuthCart[index].cart;
+      return existingAuthCart[index].cart as ProductModel[];
     }
   }
   return [];

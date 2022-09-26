@@ -1,11 +1,14 @@
+// For Redux
 import { LoginRequestPayload } from 'component/redux/auth/authAction.interface';
+// For Slice
+// import { LoginRequestPayload } from 'component/slice/auth/authSlice.interface';
 import { LoginModel, parsingLoginResponseToLoginModel } from 'service/type/model/auth';
 import { LoginResponse } from 'service/type/response/auth';
 
 export const loginApiResult = ({
   email,
   password,
-}: LoginRequestPayload): Promise<LoginModel | Error> => {
+}: Partial<LoginRequestPayload>): Promise<LoginModel | Error> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       let response: LoginResponse;
@@ -31,7 +34,7 @@ export const loginApiResult = ({
         const parsedResponse: LoginModel = parsingLoginResponseToLoginModel(response);
         resolve(parsedResponse);
       } else {
-        resolve(new Error('Login Error'));
+        resolve(new Error('There is no matching user'));
       }
     }, 1000);
   });

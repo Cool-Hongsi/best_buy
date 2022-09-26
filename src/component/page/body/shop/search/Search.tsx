@@ -6,7 +6,10 @@ import Button from 'component/common/button/Button';
 import useAppSelector from 'service/hook/useAppSelector';
 import { useAppDispatch } from 'service/hook/useAppDispatch';
 import { inputValidation } from 'service/util/inputValidation';
+// For Redux
 import { searchRequest } from 'component/redux/bestbuy/bestbuyAction';
+// For Slice
+// import { searchRequest } from 'component/slice/bestbuy/bestbuyThunk';
 import LoadingSpinner from 'component/common/loadingSpinner/LoadingSpinner';
 import * as Styled from 'component/page/body/shop/search/Styled.Search';
 

@@ -6,7 +6,10 @@ import { LOGIN } from 'service/const/general';
 import useSelector from 'service/hook/useAppSelector';
 import { useAppDispatch } from 'service/hook/useAppDispatch';
 import { inputValidation } from 'service/util/inputValidation';
+// For Redux
 import { loginRequest } from 'component/redux/auth/authAction';
+// For Slice
+// import { loginRequest } from 'component/slice/auth/authThunk';
 import LoadingSpinner from 'component/common/loadingSpinner/LoadingSpinner';
 import { useNavigate } from 'react-router-dom';
 import * as Styled from 'component/page/body/login/Styled.Login';

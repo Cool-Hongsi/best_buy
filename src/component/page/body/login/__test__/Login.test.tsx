@@ -4,18 +4,31 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createMockStore } from 'service/mock/store/createMockStore';
 import { Store } from '@reduxjs/toolkit';
+// For Redux
 import { loginRequest } from 'component/redux/auth/authAction';
+// For Slice
+// import { loginRequest } from 'component/slice/auth/authThunk';
 import { loginApiResult } from 'service/api/auth';
 import { mockLoginData } from 'service/mock/data/auth';
+// For Redux
 import { LoginRequestPayload } from 'component/redux/auth/authAction.interface';
+// For Slice
+// import { LoginRequestPayload } from 'component/slice/auth/authSlice.interface';
 import Login from 'component/page/body/login/Login';
 
 // mock은 경로 또는 package (axios.. urql..)
 // 내부에서 안에 있는 기능 또는 function 적기 + 정의하기
 // testing code에서 실제 기능 또는 function부르면 (import 필요), 하기 mock에서 정의한 것이 실행 된다. (실제 코드 실행 x)
+
+// For Redux
 jest.mock('component/redux/auth/authAction', () => ({
   loginRequest: jest.fn(),
 }));
+
+// For Slice
+// jest.mock('component/slice/auth/authThunk', () => ({
+//   loginRequest: jest.fn(),
+// }));
 
 jest.mock('service/api/auth', () => ({
   loginApiResult: jest.fn(), // 여기서 mockResolvedValue 같은 건 작동을 안함..

@@ -5,13 +5,23 @@ import { createMockStore } from 'service/mock/store/createMockStore';
 import { Store } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import { mockProductData } from 'service/mock/data/bestbuy';
+// For Redux
 import { deleteEachCart, deleteAllCart } from 'component/redux/bestbuy/bestbuyAction';
+// For Slice
+// import { deleteEachCart, deleteAllCart } from 'component/slice/bestbuy/bestbuySlice';
 import CartList from 'component/page/body/cart/CartList';
 
+// For Redux
 jest.mock('component/redux/bestbuy/bestbuyAction', () => ({
   deleteEachCart: jest.fn(),
   deleteAllCart: jest.fn(),
 }));
+
+// For Slice
+// jest.mock('component/slice/bestbuy/bestbuySlice', () => ({
+//   deleteEachCart: jest.fn(),
+//   deleteAllCart: jest.fn(),
+// }));
 
 const renderComponent = (store: Store) =>
   render(

@@ -210,6 +210,6 @@ REACT_APP_PROD_API=PROD_API_ADDRESS
 (O) axios 기본 response type / parsed type
 (O) login fake로 넣자
 (O) authReducer => 기본 / bestbuyReducer => immer
+(O) Slice with Test
 testing (axios / redux / cypress)
-slice...
 action reducer saga (testing) 해 말어?

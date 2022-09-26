@@ -5,9 +5,15 @@ import { Link } from 'react-router-dom';
 import { getHeaderHeight } from 'Styled.GlobalStyle';
 import useAppSelector from 'service/hook/useAppSelector';
 import { useAppDispatch } from 'service/hook/useAppDispatch';
+// For Redux
 import { logout } from 'component/redux/auth/authAction';
+// For Slice
+// import { logout } from 'component/slice/auth/authThunk';
 import { useNavigate } from 'react-router-dom';
+// For Redux
 import { setDefaultCartRequest } from 'component/redux/bestbuy/bestbuyAction';
+// For Slice
+// import { setDefaultCartRequest } from 'component/slice/bestbuy/bestbuyThunk';
 import * as Styled from 'component/page/header/Styled.Header';
 
 const Header = () => {
@@ -19,8 +25,6 @@ const Header = () => {
     dispatch(setDefaultCartRequest());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
-
-  console.log(cart);
 
   const dispatch = useAppDispatch();
 

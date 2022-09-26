@@ -4,18 +4,31 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createMockStore } from 'service/mock/store/createMockStore';
 import { Store } from '@reduxjs/toolkit';
+// For Redux
 import { searchRequest } from 'component/redux/bestbuy/bestbuyAction';
+// For Slice
+// import { searchRequest } from 'component/slice/bestbuy/bestbuyThunk';
 import { searchResult } from 'service/api/bestbuy';
 import { mockProductData } from 'service/mock/data/bestbuy';
+// For Redux
 import { SearchRequestPayload } from 'component/redux/bestbuy/bestbuyAction.interface';
+// For Slice
+// import { SearchRequestPayload } from 'component/slice/bestbuy/bestbuySlice.interface';
 import Search from 'component/page/body/shop/search/Search';
 
 // mock은 경로 또는 package (axios.. urql..)
 // 내부에서 function 또는 안에 있는 기능 적기 + 정의하기
 // testing code에서 실제 function 또는 기능 부르면 (import 필요), 하기 mock에서 정의한 것이 실행 된다. (실제 코드 실행 x)
+
+// For Redux
 jest.mock('component/redux/bestbuy/bestbuyAction', () => ({
   searchRequest: jest.fn(),
 }));
+
+// For Slice
+// jest.mock('component/slice/bestbuy/bestbuyThunk', () => ({
+//   searchRequest: jest.fn(),
+// }));
 
 jest.mock('axios', () => ({
   get: (url: string) => {

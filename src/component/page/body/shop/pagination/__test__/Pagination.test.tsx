@@ -5,12 +5,20 @@ import { Provider } from 'react-redux';
 import { createMockStore } from 'service/mock/store/createMockStore';
 import { Store } from '@reduxjs/toolkit';
 import { mockProductData } from 'service/mock/data/bestbuy';
+// For Redux
 import { searchRequest } from 'component/redux/bestbuy/bestbuyAction';
+// For Slice
+// import { searchRequest } from 'component/slice/bestbuy/bestbuyThunk';
 import Pagination from 'component/page/body/shop/pagination/Pagination';
 
+// For Redux
 jest.mock('component/redux/bestbuy/bestbuyAction', () => ({
   searchRequest: jest.fn(),
 }));
+// For Slice
+// jest.mock('component/slice/bestbuy/bestbuyThunk', () => ({
+//   searchRequest: jest.fn(),
+// }));
 
 const renderComponent = (store: Store) =>
   render(

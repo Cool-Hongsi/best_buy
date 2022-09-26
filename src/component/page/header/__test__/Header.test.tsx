@@ -5,17 +5,31 @@ import { ROUTE } from 'service/const/route';
 import { Provider } from 'react-redux';
 import { createMockStore } from 'service/mock/store/createMockStore';
 import { Store } from '@reduxjs/toolkit';
+// For Redux
 import { logout } from 'component/redux/auth/authAction';
+// For Slice
+// import { logout } from 'component/slice/auth/authThunk';
+// For Redux
 import { setDefaultCartRequest } from 'component/redux/bestbuy/bestbuyAction';
+// For Slice
+// import { setDefaultCartRequest } from 'component/slice/bestbuy/bestbuyThunk';
 import { mockProductData } from 'service/mock/data/bestbuy';
 import Header from 'component/page/header/Header';
 
+// For Redux
 jest.mock('component/redux/auth/authAction', () => ({
   logout: jest.fn(),
 }));
 jest.mock('component/redux/bestbuy/bestbuyAction', () => ({
   setDefaultCartRequest: jest.fn(),
 }));
+// For Slice
+// jest.mock('component/slice/auth/authThunk', () => ({
+//   logout: jest.fn(),
+// }));
+// jest.mock('component/slice/bestbuy/bestbuyThunk', () => ({
+//   setDefaultCartRequest: jest.fn(),
+// }));
 
 const mockUseNavigate = jest.fn();
 

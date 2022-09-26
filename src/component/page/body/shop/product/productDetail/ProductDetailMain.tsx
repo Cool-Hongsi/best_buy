@@ -7,7 +7,10 @@ import { ProductDetailPropsType } from 'component/page/body/shop/product/product
 import useAppSelector from 'service/hook/useAppSelector';
 import { useAppDispatch } from 'service/hook/useAppDispatch';
 import { setCartDataToAuthLocalStorage, setExistingAuthCart } from 'service/util/localStorage';
+// For Redux
 import { addCart } from 'component/redux/bestbuy/bestbuyAction';
+// For Slice
+// import { addCart } from 'component/slice/bestbuy/bestbuySlice';
 import { ProductModel } from 'service/type/model/bestbuy';
 import * as Styled from 'component/page/body/shop/product/productDetail/Styled.ProductDetailMain';
 

@@ -1,7 +1,10 @@
 import React from 'react';
 import useAppSelector from 'service/hook/useAppSelector';
 import { useAppDispatch } from 'service/hook/useAppDispatch';
+// For Redux
 import { searchRequest } from 'component/redux/bestbuy/bestbuyAction';
+// For Slice
+// import { searchRequest } from 'component/slice/bestbuy/bestbuyThunk';
 import * as Styled from 'component/page/body/shop/pagination/Styled.Pagination';
 
 const Pagination = () => {

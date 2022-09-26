@@ -7,8 +7,14 @@ import BodyContainer from 'component/page/body/BodyContainer';
 import LoadingSpinner from 'component/common/loadingSpinner/LoadingSpinner';
 import { getLocalStorage } from 'service/util/localStorage';
 import { useAppDispatch } from 'service/hook/useAppDispatch';
+// For Redux
 import { loginSuccess } from 'component/redux/auth/authAction';
+// For Slice
+// import { loginSuccess } from 'component/slice/auth/authSlice';
+// For Redux
 import { setDefaultCartRequest } from 'component/redux/bestbuy/bestbuyAction';
+// For Slice
+// import { setDefaultCartRequest } from 'component/slice/bestbuy/bestbuyThunk';
 import { LOCALSTORAGE } from 'service/const/general';
 import * as Styled from 'Styled.App';
 

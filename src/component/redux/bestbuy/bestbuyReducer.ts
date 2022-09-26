@@ -21,7 +21,7 @@ const INITIAL_STATE: BestbuyState = {
   loading: false,
   error: null,
   searchTerm: '',
-  products: null,
+  products: [],
   cart: [],
 };
 

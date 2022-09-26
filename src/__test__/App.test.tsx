@@ -5,20 +5,34 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { createMockStore } from 'service/mock/store/createMockStore';
 import { Store } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
+// For Redux
 import { loginSuccess } from 'component/redux/auth/authAction';
+// For Slice
+// import { loginSuccess } from 'component/slice/auth/authSlice';
+// For Redux
 import { setDefaultCartRequest } from 'component/redux/bestbuy/bestbuyAction';
+// For Slice
+// import { setDefaultCartRequest } from 'component/slice/bestbuy/bestbuyThunk';
 import { setLocalStorage, removeLocalStorage } from 'service/util/localStorage';
 import { LOCALSTORAGE } from 'service/const/general';
 import App from 'App';
 
 const { AUTH } = LOCALSTORAGE;
 
+// For Redux
 jest.mock('component/redux/auth/authAction', () => ({
   loginSuccess: jest.fn(),
 }));
 jest.mock('component/redux/bestbuy/bestbuyAction', () => ({
   setDefaultCartRequest: jest.fn(),
 }));
+// For Slice
+// jest.mock('component/slice/auth/authSlice', () => ({
+//   loginSuccess: jest.fn(),
+// }));
+// jest.mock('component/slice/bestbuy/bestbuyThunk', () => ({
+//   setDefaultCartRequest: jest.fn(),
+// }));
 
 const localStorageMock = (() => {
   let storage: any = {};

@@ -10,12 +10,20 @@ import { ProductDetailPropsType } from 'component/page/body/shop/product/product
 import { dateFormat } from 'service/util/dateFormat';
 import { LOCALSTORAGE } from 'service/const/general';
 import { removeLocalStorage, setLocalStorage } from 'service/util/localStorage';
+// For Redux
 import { addCart } from 'component/redux/bestbuy/bestbuyAction';
+// For Slice
+// import { addCart } from 'component/slice/bestbuy/bestbuySlice';
 import ProductDetailMain from 'component/page/body/shop/product/productDetail/ProductDetailMain';
 
+// For Redux
 jest.mock('component/redux/bestbuy/bestbuyAction', () => ({
   addCart: jest.fn(),
 }));
+// For Slice
+// jest.mock('component/slice/bestbuy/bestbuySlice', () => ({
+//   addCart: jest.fn(),
+// }));
 
 const { AUTH } = LOCALSTORAGE;
 

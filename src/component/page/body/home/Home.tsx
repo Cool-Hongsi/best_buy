@@ -12,7 +12,9 @@ const Home = () => {
   return (
     <Styled.Home data-testid="home-component">
       {isLoggedIn ? (
-        <div data-testid="home-text">Welcome, {getLocalStorage(AUTH)['username'] ?? ''}</div>
+        <div data-testid="home-text">
+          Welcome, {getLocalStorage(AUTH) ? getLocalStorage(AUTH)['username'] : ''}
+        </div>
       ) : (
         <div data-testid="home-text">Home</div>
       )}

@@ -13,7 +13,10 @@ import {
   deleteAllCartDataFromAuthLocalStorage,
   setExistingAuthCart,
 } from 'service/util/localStorage';
+// For Redux
 import { deleteEachCart, deleteAllCart } from 'component/redux/bestbuy/bestbuyAction';
+// For Slice
+// import { deleteEachCart, deleteAllCart } from 'component/slice/bestbuy/bestbuySlice';
 import * as Styled from 'component/page/body/cart/Styled.CartList';
 
 const { DELETE_ALL, DELETE_EACH } = CART;

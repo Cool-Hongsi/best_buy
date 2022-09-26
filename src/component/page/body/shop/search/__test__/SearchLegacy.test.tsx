@@ -2,7 +2,10 @@
 
 import { searchResult } from 'service/api/bestbuy';
 import { mockProductData } from 'service/mock/data/bestbuy';
+// For Redux
 import { SearchRequestPayload } from 'component/redux/bestbuy/bestbuyAction.interface';
+// For Slice
+// import { SearchRequestPayload } from 'component/slice/bestbuy/bestbuySlice.interface';
 import axios from 'axios';
 
 jest.mock('axios');
