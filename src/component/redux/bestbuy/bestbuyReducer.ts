@@ -50,10 +50,12 @@ const bestbuyReducer: Reducer<BestbuyState, BestbuyActionTypes> = (
       case SET_DEFAULT_CART_SUCCESS:
         draft.error = null;
         draft.cart = action.payload;
+        draft.searchTerm = '';
         break;
       case SET_DEFAULT_CART_FAILURE:
         draft.error = action.payload;
         draft.cart = [];
+        draft.searchTerm = '';
         break;
       case ADD_CART:
         const addCartIndex = draft.cart.findIndex(
@@ -64,6 +66,7 @@ const bestbuyReducer: Reducer<BestbuyState, BestbuyActionTypes> = (
         } else {
           draft.cart.push(action.payload);
         }
+        draft.error = null;
         break;
       case DELETE_EACH_CART:
         const deleteEachCartIndex = draft.cart.findIndex(
@@ -72,9 +75,11 @@ const bestbuyReducer: Reducer<BestbuyState, BestbuyActionTypes> = (
         if (deleteEachCartIndex > -1) {
           draft.cart.splice(deleteEachCartIndex, 1);
         }
+        draft.error = null;
         break;
       case DELETE_ALL_CART:
         draft.cart = [];
+        draft.error = null;
         break;
       default:
         return state;

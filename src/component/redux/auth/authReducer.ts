@@ -39,6 +39,7 @@ const authReducer: Reducer<AuthState, AuthActionTypes> = (
     case LOGOUT:
       return {
         ...state,
+        error: null,
         isLoggedIn: false,
       };
     default:

@@ -22,11 +22,11 @@ const renderComponent = (store: Store) =>
 describe('src/component/page/body/shop/product/productList/ProductList', () => {
   let store: Store;
 
-  it('renders NOT ProductList component (products = null)', () => {
+  it('renders NOT ProductList component (products.length === 0 && !searchTerm)', () => {
     store = createMockStore({
       bestbuyReducer: {
         searchTerm: '',
-        products: null,
+        products: [],
         cart: [],
       },
     });
@@ -35,10 +35,10 @@ describe('src/component/page/body/shop/product/productList/ProductList', () => {
     expect(getByTestId('productList-component-null')).toBeInTheDocument();
   });
 
-  it('renders NOT ProductList component (products = [])', () => {
+  it('renders NOT ProductList component (!loading && products.length === 0 && searchTerm)', () => {
     store = createMockStore({
       bestbuyReducer: {
-        searchTerm: '',
+        searchTerm: 'test',
         products: [],
         cart: [],
       },

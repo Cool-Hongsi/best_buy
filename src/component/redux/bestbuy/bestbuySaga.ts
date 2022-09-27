@@ -19,8 +19,7 @@ const { AUTH, ANONYMOUS } = LOCALSTORAGE;
 export function* searchRequestFunc(action: SearchRequest): any {
   try {
     const result: ProductModel[] | Error = yield call(searchResult, action.payload);
-    // eslint-disable-next-line no-prototype-builtins
-    if (!result.hasOwnProperty('code')) {
+    if (result && (result as ProductModel[]).length > 0) {
       // StatusCode will be better
       yield put(searchSuccess(result as ProductModel[]));
     } else {

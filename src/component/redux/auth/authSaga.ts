@@ -16,12 +16,11 @@ const { HOME } = ROUTE;
 export function* loginRequestFunc(action: LoginRequest): any {
   try {
     const result: LoginModel | Error = yield call(loginApiResult, action.payload);
-
     // eslint-disable-next-line no-prototype-builtins
     if (result.hasOwnProperty('accessToken')) {
       yield setLocalStorage(AUTH, result as LoginModel);
-      yield put(loginSuccess());
       yield action.payload.navigate(HOME);
+      yield put(loginSuccess());
     } else {
       yield put(loginFailure(result as Error));
     }

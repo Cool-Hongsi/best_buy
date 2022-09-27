@@ -9,20 +9,20 @@ import * as Styled from 'component/page/body/shop/product/productList/Styled.Pro
 const { SHOP } = ROUTE;
 
 const ProductList = () => {
-  const { loading, products } = useAppSelector((state) => state.bestbuyReducer);
+  const { loading, products, searchTerm } = useAppSelector((state) => state.bestbuyReducer);
 
   // Initial
-  if (!products) {
+  if (products?.length === 0 && !searchTerm) {
     return <div data-testid="productList-component-null" />;
   }
   // No Search Result
-  if (!loading && products?.length === 0) {
+  if (!loading && products?.length === 0 && searchTerm) {
     return <div data-testid="productList-component-no-result">There is no search result</div>;
   }
   // Search Result
   return (
     <Styled.ProductList data-testid="productList-component">
-      {products.map((product: ProductModel) => {
+      {products?.map((product: ProductModel) => {
         return (
           <Link
             data-testid={product.sku.toString() + '_link'}

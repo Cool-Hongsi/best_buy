@@ -211,5 +211,5 @@ REACT_APP_PROD_API=PROD_API_ADDRESS
 (O) login fake로 넣자
 (O) authReducer => 기본 / bestbuyReducer => immer
 (O) Slice with Test
-testing (axios / redux / cypress)
-action reducer saga (testing) 해 말어?
+(O) Redux (Action, Reducer, Saga) Test
+Cypress

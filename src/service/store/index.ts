@@ -18,15 +18,18 @@ function* rootSaga() {
   ]);
 }
 
-export const store = configureStore({
-  reducer: {
-    authReducer,
-    bestbuyReducer,
-    // other reducers
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false }).concat(sagaMiddleware),
-});
+export const createStore = () =>
+  configureStore({
+    reducer: {
+      authReducer,
+      bestbuyReducer,
+      // other reducers
+    },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({ serializableCheck: false }).concat(sagaMiddleware),
+  });
+
+export const store = createStore();
 
 sagaMiddleware.run(rootSaga);
 
