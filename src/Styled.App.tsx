@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const App = styled.div`
-  border: 2px solid blue;
-
   width: 100vw;
   max-width: 1920px;
 

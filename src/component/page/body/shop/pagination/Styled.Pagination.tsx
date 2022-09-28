@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { colorStyle, fontStyle } from 'Styled.GlobalStyle';
 
 export const Pagination = styled.div`
-  border: 2px solid blue;
   padding: 25px 0;
   text-align: center;
 
@@ -12,7 +11,7 @@ export const Pagination = styled.div`
     display: inline-block;
     padding: 5.5px;
     cursor: pointer;
-    margin: 0 40px;
+    margin: 0 20px;
   }
 
   .left {

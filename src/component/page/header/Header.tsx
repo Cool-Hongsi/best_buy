@@ -80,7 +80,13 @@ const Header = () => {
 
   return (
     <Styled.Header className="header" openMobileNav={openMobileNav} data-testid="header-component">
-      <img src={Logo} alt="Logo" className="logo" data-testid="logo" />
+      <img
+        src={Logo}
+        alt="Logo"
+        className="logo"
+        data-testid="logo"
+        onClick={() => navigate(ROUTE.HOME)}
+      />
 
       <nav
         className="navigation"
@@ -96,7 +102,7 @@ const Header = () => {
           <div />
         </div>
         {/* Web */}
-        <div className="web">
+        <div className="web" data-testid="navigation-container">
           {Object.entries(ROUTE).map((route: string[]): JSX.Element => {
             const isLogOut = route[0] === 'LOGIN' && isLoggedIn ? true : false;
             const showCountOfCart = route[0] === 'CART' && cart.length > 0 ? true : false;

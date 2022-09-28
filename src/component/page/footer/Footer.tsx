@@ -6,8 +6,9 @@ const Footer = () => {
     <Styled.Footer data-testid="footer-component">
       <div>
         <div>Created by React</div>
-        <div>Redux with Saga middleware</div>
+        <div>Redux &amp; Saga middleware / Slice &amp; Redux toolkit</div>
         <div>Jest &amp; Testing-Library for unit / integration test</div>
+        <div>Cypress for E2E test</div>
       </div>
       <div>Jake Hong</div>
     </Styled.Footer>

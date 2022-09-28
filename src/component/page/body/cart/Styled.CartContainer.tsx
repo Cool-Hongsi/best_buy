@@ -3,7 +3,6 @@ import { getGridColumns, getResponsiveMediaQuery } from 'Styled.GlobalStyle';
 
 export const CartContainer = styled.div`
   padding: 50px 0;
-  border: 2px solid red;
   display: grid;
   grid-template-columns: 1fr 350px;
   column-gap: 70px;

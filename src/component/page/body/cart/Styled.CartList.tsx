@@ -24,15 +24,17 @@ export const CartList = styled.div`
       ${getResponsiveMediaQuery('sm')} {
         min-width: 35px;
         padding: 14px 4px;
-        font-size: ${fontStyle.size.xs};
+        font-size: ${fontStyle.size.ms};
       }
       .cartList-each-cell-image {
         width: 100px;
         height: 100px;
 
         ${getResponsiveMediaQuery('sm')} {
-          width: 40px;
-          height: 40px;
+          display: none;
+          // width: 35px;
+          // height: 35px;
+          border: 2px solid red;
         }
       }
     }

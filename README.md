@@ -196,20 +196,66 @@ REACT_APP_QA_API=QA_API_ADDRESS
 REACT_APP_PROD_API=PROD_API_ADDRESS
 ```
 
-(O) 프로젝트 structure 참고 (interface, component, Styled.component.tsx, **test**)
-(O) component children props type => JSX.Element | JSX.Element[];
-(O) -webkit-line-clamp: 3; (product name field)
-(O) Type Partial<User> Mapping!
-(O) react router dom (lazy)
-(O) StyledComponent? ClassNames & Bootstrap? (StyledComponent 사용하면 media query 사용해야 하는데, 고정 값으로 사용토록 ㄱㄱ)
-(O) input search. (reusable)
-(O) dotenv
-(O) bestbuy api
-(O) path not .. .. => src/
-(O) type enum? Action 아우르는거
-(O) axios 기본 response type / parsed type
-(O) login fake로 넣자
-(O) authReducer => 기본 / bestbuyReducer => immer
-(O) Slice with Test
-(O) Redux (Action, Reducer, Saga) Test
-Cypress
+# Cypress
+
+- npm i -D cypress
+- package.json scripts 수정
+
+```
+"cypress": "cypress open"
+```
+
+- 별도로 Project Server Open한 상태에서..
+- npm run cypress 치면, first time이라면서, Verify 작업 하고, Cypress가 open 된다.
+- e2e Testing을 누르면, root directory에 cypress.config.ts file & cypress directory가 생성된다.
+- continue를 누르면 configuration 작업을 한 후 어떤 browser 사용할지 나온다. (주로 chrome)
+- Chrome이 열리고, 내가 Test하고 싶은 Spec을 골라서 실행하면 된다.
+- 기본적으로 cypress directory 내에 e2e directory가 생성되면서, 예시 파일들이 들어간다.
+- 이후 cypress directory 셋팅은 BestBuy 프로젝트 참고
+- localStorage에 접근하는 방법
+  - npm i -D cypress-localstorage-commands
+  - cypress.config.ts에 하기 추가
+
+```
+/* eslint-disable @typescript-eslint/no-var-requires */
+import { defineConfig } from 'cypress';
+
+export default defineConfig({
+  e2e: {
+    setupNodeEvents(on, config) {
+      require('cypress-localstorage-commands/plugin')(on, config);
+      return config;
+      // implement node event listeners here
+    },
+    baseUrl: 'http://localhost:3000/',
+  },
+});
+```
+
+- cypress/support/e2e.ts
+
+```
+import 'cypress-localstorage-commands';
+```
+
+- 이후 cypress testing code에서 cy.getLocalStorage('auth').then((data) => console.log(data));
+
+```
+- (O) Structure (interface, component, Styled.component.tsx, **test**)
+- (O) Component children props type => JSX.Element | JSX.Element[];
+- (O) -webkit-line-clamp: 3; (product name field) for ... ui
+- (O) Type Partial<Model> Mapping
+- (O) react router dom (lazy / useParams / useLocation ...)
+- (O) StyledComponent? ClassNames & Bootstrap? => StyledComponent
+- (O) Reusable Component (input / modal / button / loadingSpinner)
+- (O) dotenv with staging (DEV / QA / PROD)
+- (O) Bestbuy api
+- (O) path not .. .. => src/
+- (O) type redux action 통합
+- (O) axios => response type / parsed type
+- (O) Fake Login
+- (O) authReducer => 기본 / bestbuyReducer => immer
+- (O) Slice with Test
+- (O) Redux (Action, Reducer, Saga) with Test
+- (O) Cypress for E2E Test
+```

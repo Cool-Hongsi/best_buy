@@ -1,3 +1,4 @@
+// For Redux
 import { createStore } from 'service/store';
 import { Store } from '@reduxjs/toolkit';
 import { AuthState } from 'component/redux/auth/authReducer.interface';
@@ -60,3 +61,11 @@ describe('src/component/redux/auth/authReducer', () => {
     expect(store.getState().authReducer).toEqual({ ...initialState });
   });
 });
+
+// For Slice
+// /* eslint-disable @typescript-eslint/no-unused-vars */
+// import React from 'react';
+
+// it('', () => {
+//   expect('').toEqual('');
+// });

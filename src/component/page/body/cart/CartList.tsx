@@ -105,16 +105,18 @@ const CartList = () => {
                     className="cartList-each-cell-image"
                   />
                 </th>
-                <th data-testid="cartList-each-cell-name">{cart.name}</th>
+                <th data-testid="cartList-each-cell-name" className="cartList-each-cell-name">
+                  {cart.name}
+                </th>
                 <th data-testid="cartList-each-cell-count">{cart.count}</th>
                 <th data-testid="cartList-each-cell-price">
-                  ${cart.salePrice > 0 ? cart.salePrice : cart.regularPrice}
+                  ${cart.salePrice > 0 ? cart.salePrice.toFixed(2) : cart.regularPrice.toFixed(2)}
                 </th>
                 <th data-testid="cartList-each-cell-totalPrice">
                   $
                   {cart.salePrice > 0
-                    ? cart.salePrice * cart.count
-                    : cart.regularPrice * cart.count}
+                    ? (cart.salePrice * cart.count).toFixed(2)
+                    : (cart.regularPrice * cart.count).toFixed(2)}
                 </th>
                 <th>
                   <div

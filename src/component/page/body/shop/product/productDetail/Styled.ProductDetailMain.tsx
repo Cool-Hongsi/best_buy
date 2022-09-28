@@ -10,11 +10,9 @@ export const ProductDetailMain = styled.section`
     min-width: 300px;
     max-width: 400px;
     height: auto;
-    border: 2px solid pink;
   }
 
   .product-detail-main-description {
-    border: 2px solid red;
     .product-detail-main-manufacturer-modelNumber-container {
       margin: 20px 0;
       font-size: ${fontStyle.size.xs};

@@ -1,3 +1,4 @@
+// For Redux
 import { createStore } from 'service/store';
 import { Store } from '@reduxjs/toolkit';
 import { BestbuyState } from 'component/redux/bestbuy/bestbuyReducer.interface';
@@ -136,3 +137,11 @@ describe('src/component/redux/bestbuy/bestbuyReducer', () => {
     });
   });
 });
+
+// For Slice
+// /* eslint-disable @typescript-eslint/no-unused-vars */
+// import React from 'react';
+
+// it('', () => {
+//   expect('').toEqual('');
+// });

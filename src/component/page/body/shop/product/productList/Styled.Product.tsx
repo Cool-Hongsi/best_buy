@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { colorStyle, fontStyle } from 'Styled.GlobalStyle';
 
 export const Product = styled.div`
-  border: 2px solid pink;
   min-height: 350px;
   display: flex;
   flex-direction: column;

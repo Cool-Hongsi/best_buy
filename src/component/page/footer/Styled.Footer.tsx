@@ -6,6 +6,9 @@ import {
 } from 'Styled.GlobalStyle';
 
 export const Footer = styled.footer`
+  position: absolute;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,6 +16,7 @@ export const Footer = styled.footer`
   background-color: ${colorStyle.dark};
   color: ${colorStyle.white};
   line-height: 25px;
+
   ${getGeneralHorizontalPadding()};
 
   ${getResponsiveMediaQuery('sm')} {

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { getGridColumns, getResponsiveMediaQuery } from 'Styled.GlobalStyle';
 
 export const ProductList = styled.div`
-  border: 2px solid red;
   padding: 50px 0;
   display: grid;
   ${getGridColumns(4)};

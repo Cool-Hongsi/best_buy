@@ -74,6 +74,8 @@ describe('src/component/page/header/Header', () => {
       const { getByTestId } = renderComponent(store);
       expect(getByTestId('logo')).toBeInTheDocument();
       expect(getByTestId('navigation')).toBeInTheDocument();
+      fireEvent.click(getByTestId('logo'));
+      expect(window.location.pathname).toStrictEqual(ROUTE.HOME);
     });
     it('test navigation-each tag', () => {
       const { getAllByTestId } = renderComponent(store);
