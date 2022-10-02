@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "src", // Relative path starting point
+    "baseUrl": "src", // Set starting path
     "target": "es5",
     "lib": [
       "dom",
